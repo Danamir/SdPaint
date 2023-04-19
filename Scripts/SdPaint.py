@@ -125,7 +125,7 @@ def update_image(image_data):
 
 def new_random_seed_for_payload():
     global seed
-    seed = round(random.random() * sys.maxsize)
+    seed = round(random.random() * 2**32)
     with open("payload.json", "r") as f:
         payload = json.load(f)
     payload['seed'] = seed
@@ -178,7 +178,6 @@ while running:
                     seed = seed - 1
                 elif event.key == pygame.K_n:
                     new_random_seed_for_payload()
-
             elif event.type == pygame.FINGERUP:
                 event.button = 1
                 event.pos = finger_pos(event.x, event.y)
