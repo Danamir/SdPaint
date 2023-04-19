@@ -13,8 +13,6 @@ import math
 from PIL import Image, ImageOps
 import tkinter as tk
 from tkinter import filedialog
-import os
-import random
 
 # Initialize Pygame
 pygame.init()
@@ -113,10 +111,6 @@ def save_file_dialog():
         time.sleep(1)  # add a 1-second delay
     return file_path
 
-def ask_for_photo():
-    # Set up the main loop
-    file_path="C:\\Users\\rkilic\\OneDrive\\Resimler\\eye_no_pupil.png"
-    upload_image_path(file_path)
 
 def update_image(image_data):
     # Decode base64 image data
@@ -129,16 +123,14 @@ def update_image(image_data):
     global need_redraw
     need_redraw = True
 
-def new_random_seed_for_payload(seed=None):
+def new_random_seed_for_payload():
+    seed = round(random.random() * sys.maxsize)
     with open("payload.json", "r") as f:
         payload = json.load(f)
-    if seed is None:
-        seed = random.randint(0, 1000000000)
     payload['seed'] = seed
-    # write
     with open("payload.json", "w") as f:
         json.dump(payload, f, indent=4)
-    return payload
+    return seed
 
 # Set up the main loop
 running = True
@@ -183,11 +175,8 @@ while running:
                     seed = seed + 1
                 elif event.key == pygame.K_DOWN:
                     seed = seed - 1
-                elif event.key == pygame.K_r:
-                    seed = round(random.random() * sys.maxsize)
-                    new_random_seed_for_payload(seed)
-                elif event.key == pygame.K_t: # CONTROL + T
-                    ask_for_photo()
+                elif event.key == pygame.K_n:
+                    new_random_seed_for_payload()
 
             elif event.type == pygame.FINGERUP:
                 event.button = 1
