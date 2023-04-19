@@ -124,6 +124,7 @@ def update_image(image_data):
     need_redraw = True
 
 def new_random_seed_for_payload():
+    global seed
     seed = round(random.random() * sys.maxsize)
     with open("payload.json", "r") as f:
         payload = json.load(f)
