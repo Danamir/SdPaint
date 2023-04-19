@@ -113,6 +113,10 @@ def save_file_dialog():
         time.sleep(1)  # add a 1-second delay
     return file_path
 
+def ask_for_photo():
+    # Set up the main loop
+    file_path="C:\\Users\\rkilic\\OneDrive\\Resimler\\eye_no_pupil.png"
+    upload_image_path(file_path)
 
 def update_image(image_data):
     # Decode base64 image data
@@ -179,9 +183,11 @@ while running:
                     seed = seed + 1
                 elif event.key == pygame.K_DOWN:
                     seed = seed - 1
-                elif event.key == pygame.K_n:
+                elif event.key == pygame.K_r:
                     seed = round(random.random() * sys.maxsize)
                     new_random_seed_for_payload(seed)
+                elif event.key == pygame.K_t: # CONTROL + T
+                    ask_for_photo()
 
             elif event.type == pygame.FINGERUP:
                 event.button = 1
