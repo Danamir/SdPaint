@@ -44,12 +44,13 @@
   "alwayson_scripts": {},
   "controlnet_units": [
     {
-      "input_image": "",
+      "enabled": "true",
+      "image": "",
       "mask": "",
       "module": "none",
       "model": "None",
       "weight": 1,
-      "resize_mode": "Inner Fit (Scale to Fit)",
+      "resize_mode": "Crop and Resize",
       "lowvram": "false",
       "processor_res": 64,
       "threshold_a": 64,
